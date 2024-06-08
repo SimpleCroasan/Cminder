@@ -13,6 +13,7 @@ public class Asignatura {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter
     private long id;
 
     @Setter

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AsignaturaService{
@@ -17,4 +18,35 @@ public class AsignaturaService{
         return asignaturaRepository.findAll();
 
     }
+
+
+    public Asignatura insertarAsignatura(Asignatura asignatura){
+
+        return asignaturaRepository.save(asignatura);
+    }
+
+    public void eliminarAsignatura(Long id){
+        asignaturaRepository.deleteById(id);
+
+    }
+    public Asignatura buscarAsignatura(Long id){
+        return asignaturaRepository.findById(id).get();
+    }
+
+    public void actualizarAsignatura(Long id, String nombre, int creditos) {
+        Optional<Asignatura> optionalAsignatura = asignaturaRepository.findById(id);
+
+        if (optionalAsignatura.isPresent()) {
+            Asignatura asignatura = optionalAsignatura.get();
+            asignatura.setNombre(nombre);
+            asignatura.setCreditos(creditos);
+            asignaturaRepository.save(asignatura);
+        }
+    }
+
+    public Double calularPromedioPonderado(){
+        return asignaturaRepository.findAll().stream().mapToDouble(Asignatura::getNotaFinal).average().getAsDouble();
+    }
+
+
 }

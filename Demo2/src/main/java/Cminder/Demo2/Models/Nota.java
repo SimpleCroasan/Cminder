@@ -30,8 +30,7 @@ public class Nota {
     private double porcentaje;
 
     @Setter
-    @ManyToOne(fetch =FetchType.LAZY)
-    @JoinColumn(name = "asignaturaId")
-    private Asignatura asignaturaId;
+    @Column(name="asignaturaId")
+    private long asignaturaId;
 
 }
