@@ -29,6 +29,9 @@ export class NotaService {
     return this.http.delete<void>(`${this.url}/borrar/${notaId}`);
   }
   
+  updateAsignatura(nota: Nota): Observable<void> {
+    return this.http.patch<void>(`${this.url}/actualizar/${nota.id}`, nota);
+  }
   
 }
 

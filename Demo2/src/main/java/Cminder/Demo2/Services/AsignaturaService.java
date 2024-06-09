@@ -45,7 +45,9 @@ public class AsignaturaService{
     }
 
     public Double calularPromedioPonderado(){
-        return asignaturaRepository.findAll().stream().mapToDouble(Asignatura::getNotaFinal).average().getAsDouble();
+        List<Asignatura> asignaturas = asignaturaRepository.findAll();
+        int numeroCreditos=asignaturas.stream().mapToInt(Asignatura::getCreditos).sum();
+        return asignaturas.stream().mapToDouble(asignatura -> asignatura.getCreditos() * asignatura.getNotaFinal()/numeroCreditos).sum();
     }
 
 

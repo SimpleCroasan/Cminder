@@ -41,9 +41,12 @@
             </tbody>
 
         </table>
-        <button class="btn-calculate">Calcular Promedio</button>
+        <button class="btn-calculate" (click)="obtenerPromedioPonderado()">Calcular Promedio</button>
         <div id="promedio" class="result"></div>
+        <p>El promedio ponderado es: {{promedioPonderado}}</p>
 
+
+        
         <div *ngIf="mostrarModalBorrar" class="modal">
             <div class="modal-content">
               <span class="close" (click)="mostrarModalBorrar = false">×</span>

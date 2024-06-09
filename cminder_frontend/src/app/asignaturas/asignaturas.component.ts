@@ -21,6 +21,8 @@ export class AsignaturasComponent {
   mostrarModal = false;
   mostrarModalBorrar = false;
   mostrarModalActualizar = false;
+  promedioPonderado: number;
+
 
 
   constructor(private asignaturaService: AsignaturaService, private cdr: ChangeDetectorRef,private router: Router) { }
@@ -104,6 +106,8 @@ actualizarCreditosActualizacion(event: any): void {
 }
 
 
+
+
 //notas
 
 verNotas(asignatura: Asignatura): void {
@@ -112,5 +116,12 @@ verNotas(asignatura: Asignatura): void {
 
 
 
+
+
+obtenerPromedioPonderado(): void {
+  this.asignaturaService.getPromedioPonderado().subscribe(promedio => {
+    this.promedioPonderado = promedio;
+  });
+}
 
 }

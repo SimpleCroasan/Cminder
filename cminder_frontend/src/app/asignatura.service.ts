@@ -26,6 +26,12 @@ export class AsignaturaService {
   updateAsignatura(asignatura: Asignatura): Observable<void> {
     return this.http.patch<void>(`${this.url}/actualizar/${asignatura.id}`, asignatura);
   }
+
+
+  getPromedioPonderado(): Observable<number> {
+    return this.http.get<number>(`${this.url}/promedio/ponderado`);
+  }
+  
 }
   
   

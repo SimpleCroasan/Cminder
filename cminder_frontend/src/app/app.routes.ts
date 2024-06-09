@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AsignaturasComponent } from './asignaturas/asignaturas.component';
 import { NotaComponent } from './nota/nota.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { MenuComponent } from './menu/menu.component';
 
 export const routes: Routes = [
 
@@ -14,6 +15,9 @@ export const routes: Routes = [
     },
     
     {path: 'notas/:id', component: NotaComponent
+
+    },
+    {path: 'menu', component: MenuComponent
 
     }
 

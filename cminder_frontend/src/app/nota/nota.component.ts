@@ -19,7 +19,9 @@ export class NotaComponent implements OnInit {
   asignaturaId: number;
   notas: Nota[] = [];
   nuevaNota: Nota = new Nota();
+  NotaActualizar: Nota = new Nota();
   mostrarModalAgregar = false;
+  mostrarModalActualizar = false;
 
 
   constructor(private route: ActivatedRoute, private notaService: NotaService,private router: Router) { }
@@ -84,6 +86,37 @@ export class NotaComponent implements OnInit {
     }
   }
 
+
+
+
+  actualizarNota(): void {
+    if (this.NotaActualizar.id !== undefined) {
+      this.notaService.updateAsignatura(this.NotaActualizar).subscribe(() => {
+        this.notas = this.notas.map(a => a.id === this.NotaActualizar.id ? this.NotaActualizar : a);
+        this.NotaActualizar = new Nota();
+        this.mostrarModalActualizar = false;
+      });
+    }
+  }
+  
+  confirmarActualizar(nota: Nota): void {
+    this.NotaActualizar = Object.assign(new Nota(), nota); 
+    this.mostrarModalActualizar = true;
+  }
+  
+  
+  actualizarNombreActualizacion(event: any): void {
+    this.NotaActualizar.titulo = event.target.value;
+  }
+  
+  actualizarValorActualizacion(event: any): void {
+    this.NotaActualizar.valor = Number(event.target.value);
+  }
+  
+  actualizarPorcentajeActualizacion(event: any): void {
+    this.NotaActualizar.porcentaje = Number(event.target.value);
+  }
+  
   
   
 }
